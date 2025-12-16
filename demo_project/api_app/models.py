@@ -1,7 +1,9 @@
 from django.db import models
 import json
+import uuid
 
 class Client(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=20)
     address = models.CharField(max_length=50)
     birthdate = models.DateField()
@@ -9,7 +11,7 @@ class Client(models.Model):
     longitude = models.FloatField()
 
     def to_json(self):
-        return {'id': self.id,
+        return {'id': str(self.id),
         'name': self.name,
         'birthdate': self.birthdate,
         'address': self.address,
@@ -17,6 +19,7 @@ class Client(models.Model):
         'longitude': self.longitude}
 
 class Account(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     ACCOUNT_TYPES = (
         ("CREDI CARD", "Credit card"),
         ("DEBIT CARD", "Debit card")
@@ -30,7 +33,7 @@ class Account(models.Model):
 
     def to_json(self):
         return {
-        'id': self.id,
+        'id': str(self.id),
         'account_type': self.account_type,
         'number': self.number,
         'balance': self.balance }

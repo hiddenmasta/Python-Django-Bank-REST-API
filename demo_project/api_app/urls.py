@@ -1,12 +1,16 @@
+
 from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('users', views.list_users),
-    path('users/create/', views.create_user),
-    path('users/<int:id>/update/', views.update_user),
-    path('accounts', views.list_accounts),
-    path('users/<int:user_id>/account/create/', views.create_account),
-    path('users/<int:user_id>/accounts/<int:account_id>/transfer/', views.transfer_money_to_account),
-    path('accounts/transfer/', views.transfer_money_between_accounts)
+    # /users/ [GET, POST]
+    path('users/', views.users_collection),
+    # /users/<id>/ [PUT]
+    path('users/<uuid:id>/', views.user_detail),
+    # /accounts/ [GET, POST]
+    path('accounts/', views.accounts_collection),
+    # /accounts/<int:id>/transfer/ [PATCH]
+    path('accounts/<uuid:id>/transfer/', views.transfer_money_to_account),
+    # /transfers/ [POST]
+    path('transfers/', views.transfer_money_between_accounts),
 ]

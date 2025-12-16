@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Client',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.UUIDField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=20)),
                 ('address', models.CharField(max_length=50)),
                 ('birthdate', models.DateField()),
@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Account',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.UUIDField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('number', models.CharField(max_length=16)),
                 ('account_type', models.CharField(choices=[('CREDI CARD', 'Credit card'), ('DEBIT CARD', 'Debit card')], default='CREDI CARD')),
                 ('client', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api_app.client')),
